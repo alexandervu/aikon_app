@@ -37,6 +37,8 @@ jobs:
   stage:
     needs: build
     runs-on: ubuntu-latest
+    env:
+      STAGE_NAME: stage
     steps:
       - uses: actions/checkout@v2
       - name: Cache Build
@@ -47,8 +49,8 @@ jobs:
           key: ${{ runner.os }}-build-aikon-stage-cache
       - run: rm .gitignore
       - run: git config --global user.email "stage@aikon.one"
-      - run: git config --global user.name "stage"
-      - run: git checkout -B stage
+      - run: git config --global user.name "${{ env.STAGE_NAME }}"
+      - run: git branch ${{ env.STAGE_NAME }} origin/${{ env.STAGE_NAME }}
       - run: git add .
       - run: git commit -m 'new stage'
-      - run: git push -u origin stage
+      - run: git push -u origin ${{ env.STAGE_NAME }}

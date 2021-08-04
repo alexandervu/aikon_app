@@ -40,7 +40,7 @@ jobs:
         with:
           ref: stage
 
-      - run: rm -Rf *
+      - run: rm -Rf * && rm -Rf .github
 
       - name: Cache Build
         id: cache-primes

@@ -50,7 +50,7 @@ jobs:
         id: cache-primes
         uses: actions/cache@v2
         with:
-          path: ./
+          path: build
           key: ${{ runner.os }}-build-aikon-stage-cache
 
       - run: git config --global user.email "stage@aikon.one"

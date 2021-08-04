@@ -42,7 +42,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: {{ env.STAGE_NAME }}
+          ref: stage
 
       - run: cmd
 

@@ -41,16 +41,14 @@ jobs:
       STAGE_NAME: stage
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: {{ env.STAGE_NAME }}
+
+      - run: cmd
+
       - name: Cache Build
         id: cache-primes
         uses: actions/cache@v2
         with:
           path: build
           key: ${{ runner.os }}-build-aikon-stage-cache
-      - run: rm .gitignore
-      - run: git config --global user.email "stage@aikon.one"
-      - run: git config --global user.name "${{ env.STAGE_NAME }}"
-      - run: git checkout ${{ env.STAGE_NAME }} origin/${{ env.STAGE_NAME }}
-      - run: git add .
-      - run: git commit -m 'new stage'
-      - run: git push -u origin ${{ env.STAGE_NAME }}

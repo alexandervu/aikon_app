@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Build Stage CI
 
 on:
   push:
@@ -54,6 +54,9 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - run: rm .gitignore
-      - run: git checkout -B stage
-      - run: git add .
-      - run: git commit -m 'new stage'
+      - run: |
+        git config --global user.email "stage@aikon.one"
+        git config --global user.name "stage"
+        git checkout -B stage
+        git add .
+        git commit -m 'new stage'

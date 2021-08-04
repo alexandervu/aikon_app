@@ -40,6 +40,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Cache Gradle packages
         uses: actions/cache@v2
         env:
@@ -52,7 +53,7 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-
+      - run: rm .gitignore
       - run: git checkout -B stage
       - run: git add .
       - run: git commit -m 'new stage'

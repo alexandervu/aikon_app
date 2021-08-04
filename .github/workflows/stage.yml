@@ -46,9 +46,10 @@ jobs:
         id: cache-primes
         uses: actions/cache@v2
         with:
-          path: ./
+          path: dist
           key: aikon-stage-cache
 
+      - run: mv ./dist/* ./ && rmdir dist
       - run: git config --global user.email "stage@aikon.one"
       - run: git config --global user.name "${{ env.STAGE_NAME }}"
       - run: git add .

@@ -44,11 +44,17 @@ jobs:
         with:
           ref: stage
 
-      - run: pwd
+      - run: rm -Rf *
 
       - name: Cache Build
         id: cache-primes
         uses: actions/cache@v2
         with:
-          path: build
+          path: ./
           key: ${{ runner.os }}-build-aikon-stage-cache
+
+      - run: git config --global user.email "stage@aikon.one"
+      - run: git config --global user.name "${{ env.STAGE_NAME }}"
+      - run: git add .
+      - run: git commit -m 'new stage'
+      - run: git push

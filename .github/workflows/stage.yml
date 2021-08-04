@@ -27,7 +27,7 @@ jobs:
         with:
           path: |
             ~/build
-          key: key: ${{ runner.os }}-build-${{ env.cache-name }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
@@ -47,7 +47,7 @@ jobs:
         with:
           path: |
             ~/build
-          key: key: ${{ runner.os }}-build-${{ env.cache-name }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}
             ${{ runner.os }}-build-

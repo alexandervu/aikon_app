@@ -44,7 +44,7 @@ jobs:
         with:
           ref: stage
 
-      - run: cmd
+      - run: pwd
 
       - name: Cache Build
         id: cache-primes

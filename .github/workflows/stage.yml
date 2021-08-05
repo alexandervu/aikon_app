@@ -26,11 +26,16 @@ jobs:
           path: |
             dist
           key: aikon-stage-cache
-      - run: sed -i.bak "s/%BUILDHASH%/$(git rev-parse --short HEAD)/" package.json && rm package.json.bak
-      - run: sed -i.bak "s/%BUILDTIMESTAMP%/$(date -u)/" package.json && rm package.json.bak
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: echo 'dont forget to run npm test'
+      - name: Write git-hash to package.json
+        run: sed -i.bak "s/%BUILDHASH%/$(git rev-parse --short HEAD)/" package.json && rm package.json.bak
+      - name: Write build timestapm to package.json
+        run: sed -i.bak "s/%BUILDTIMESTAMP%/$(date -u)/" package.json && rm package.json.bak
+      - name: NPM install from lock file
+        run: npm ci
+      - name: NPM build if present
+        run: npm run build --if-present
+      - name: Test
+        run: echo 'dont forget to run npm test'
   deploy:
     needs: build
     runs-on: ubuntu-latest

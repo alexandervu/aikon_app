@@ -31,9 +31,11 @@ jobs:
         id: node-cache-step
         uses: actions/cache@v2
         env:
-          cache-name: cache-node-modules
+          cache-name: cache-npm-node-modules
         with:
-          path: ~/.npm
+          path: |
+            ~/.npm
+            ./node_modules
           key: ${{ runner.os }}-node-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install NPM dependencies from lock file

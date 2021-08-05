@@ -41,7 +41,7 @@
   </button>
   <p>
     Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement 1.
+    <code>components/HelloWorld.vue</code> to test hot module replacement 2.
   </p>
 </template>
 

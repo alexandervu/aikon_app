@@ -1,0 +1,34 @@
+{
+  "recommendations": [
+    // ESLint - Integrates ESLint JavaScript into VS Code.
+    "dbaeumer.vscode-eslint",
+    // Disable eslint rule - Disable eslint rule with one click.
+    "wooodhead.disable-eslint-rule",
+    // ESLint-disable-snippets - Simple snippets for disable eslint rules
+    "drknoxy.eslint-disable-snippets",
+    // Vue - Syntax highlight for Vue.js
+    "octref.vetur",
+    // Stylelint - Modern CSS/SCSS/Less linter
+    "stylelint.vscode-stylelint",
+    // EditorConfig for VS Code - EditorConfig Support for Visual Studio Code
+    // Not sure if this is needed or recommended,
+    // but .editorconfig file is still included in the scaffolded project...
+    "editorconfig.editorconfig",
+    // DotENV - Support for dotenv file syntax.
+    "mikestead.dotenv",
+    // Gitignore - Support creating and managing gitignore file
+    "codezombiech.gitignore",
+    // Import-cost - Show the size of the importing library
+    "wix.vscode-import-cost",
+    // PostCSS - language support
+    "csstools.postcss",
+    // Bracket-pair-colorizer - Colorize brackets by her hirarchy
+    "coenraads.bracket-pair-colorizer",
+    // Better-comments - Improve comments by color
+    "aaron-bond.better-comments",
+    // Theme-cobalt3 - Color Theme
+    "alex-pattison.theme-cobalt3",
+    // perkovec.emoji - Emoji support
+    "perkovec.emoji"
+  ]
+}

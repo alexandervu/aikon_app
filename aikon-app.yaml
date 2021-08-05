@@ -1,0 +1,15 @@
+domains:
+- domain: app.aikon.one
+  type: PRIMARY
+name: aikon-app
+region: ams
+static_sites:
+- environment_slug: html
+  github:
+    branch: production
+    deploy_on_push: true
+    repo: alexandervu/aikon_app
+  name: aikon-app
+  routes:
+  - path: /
+  source_dir: /

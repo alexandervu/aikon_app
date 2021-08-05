@@ -2,7 +2,7 @@
   <h1>{{ msg }}</h1>
 
   <p>
-    Recommended IDE setup:
+    Recommended IDE setup: {{ version }}
     <a
       href="https://code.visualstudio.com/"
       target="_blank">VSCode</a>
@@ -46,7 +46,9 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
+import { ref, computed, defineComponent } from 'vue'
+import { useStore } from 'vuex'
+
 export default defineComponent({
   name: 'HelloWorld',
   props: {
@@ -57,7 +59,11 @@ export default defineComponent({
   },
   setup: () => {
     const count = ref(0)
-    return { count }
+    const store = useStore()
+    return {
+      count,
+      version: computed(() => store.state.version)
+    }
   }
 })
 </script>

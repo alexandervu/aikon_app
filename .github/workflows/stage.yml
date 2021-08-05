@@ -30,6 +30,7 @@ jobs:
         run: sed -i.bak "s/%BUILDHASH%/$(git rev-parse --short HEAD)/" package.json && rm package.json.bak
       - name: Write build timestapm to package.json
         run: sed -i.bak "s/%BUILDTIMESTAMP%/$(date -u)/" package.json && rm package.json.bak
+      - run: cat package.json
       - name: NPM install from lock file
         run: npm ci
       - name: NPM build if present
@@ -54,7 +55,7 @@ jobs:
         with:
           path: dist
           key: aikon-stage-cache
-
+      - run: ls -la ./dist
       - run: mv ./dist/* ./ && rmdir dist
       - run: git config --global user.email "github@aikon.one"
       - run: git config --global user.name "${{ env.STAGE_NAME }}"

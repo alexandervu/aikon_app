@@ -21,6 +21,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Write git-hash to package.json
+        run: sed -i.bak "s/%BUILDHASH%/$(git rev-parse --short HEAD)/" package.json && rm package.json.bak
+
+      - name: Write build timestamp to package.json
+        run: sed -i.bak "s/%BUILDTIMESTAMP%/$(date -u)/" package.json && rm package.json.bak
+
       - name: Cache Build
         id: node-cache-step
         uses: actions/cache@v2
@@ -29,15 +35,6 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ env.cache-name }}-
-            ${{ runner.os }}-node-
-            ${{ runner.os }}-
-      - name: Write git-hash to package.json
-        run: sed -i.bak "s/%BUILDHASH%/$(git rev-parse --short HEAD)/" package.json && rm package.json.bak
-
-      - name: Write build timestamp to package.json
-        run: sed -i.bak "s/%BUILDTIMESTAMP%/$(date -u)/" package.json && rm package.json.bak
 
       - name: Install NPM dependencies from lock file
         if: steps.node-cache-step.outputs.cache-hit != 'true'

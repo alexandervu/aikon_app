@@ -14,41 +14,42 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      
+
+      - name: Write git-hash to package.json
+        run: sed -i.bak "s/%BUILDHASH%/$(git rev-parse --short HEAD)/" package.json && rm package.json.bak
+
+      - name: Write build timestamp to package.json
+        run: sed -i.bak "s/%BUILDTIMESTAMP%/$(date -u)/" package.json && rm package.json.bak
+
       - name: Cache Build
+        id: node-cache-step
         uses: actions/cache@v2
+        env:
+          cache-name: cache-npm-node-modules
         with:
           path: |
-            dist
-          key: aikon-production-cache
+            ~/.npm
+            ./node_modules
+          key: ${{ runner.os }}-node-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: echo 'dont forget to run npm test'
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+      - name: Install NPM dependencies from lock file
+        if: steps.node-cache-step.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: NPM build if present
+        run: npm run build --if-present
+
+      - name: Test
+        run: echo 'dont forget to run npm test'
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          ref: production
-
-      - run: rm -Rf * && rm -Rf .github
-
-      - name: Cache Build
-        id: cache-primes
-        uses: actions/cache@v2
-        with:
-          path: dist
-          key: aikon-production-cache
-
-      - run: mv ./dist/* ./ && rmdir dist
-      - run: git config --global user.email "github@aikon.one"
-      - run: git config --global user.name "production"
-      - run: git add .
-      - run: git commit -m 'new deployment'
-      - run: git push
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: production

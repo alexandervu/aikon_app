@@ -40,7 +40,7 @@ jobs:
         run: sed -i.bak "s/%BUILDTIMESTAMP%/$(date -u)/" package.json && rm package.json.bak
 
       - name: Install NPM dependencies from lock file
-        if: steps.nodeCacheStep.outputs.cache-hit != true
+        if: steps.nodeCacheStep.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: NPM build if present

@@ -36,7 +36,7 @@ jobs:
       - name: Write git-hash to package.json
         run: sed -i.bak "s/%BUILDHASH%/$(git rev-parse --short HEAD)/" package.json && rm package.json.bak
 
-      - name: Write build timestapm to package.json
+      - name: Write build timestamp to package.json
         run: sed -i.bak "s/%BUILDTIMESTAMP%/$(date -u)/" package.json && rm package.json.bak
 
       - name: Install NPM dependencies from lock file

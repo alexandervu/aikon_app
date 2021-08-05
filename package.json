@@ -1,11 +1,17 @@
 {
   "name": "aikon_app",
   "version": "0.0.0",
+  "build": {
+    "githash": "%BUILDHASH%",
+    "timestamp": "%BUILDTIMESTAMP%"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "lint": "eslint --ext .vue --ext .js src",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "pretest": "npm run lint",
+    "test": "echo \"Error: no test specified\""
   },
   "dependencies": {
     "vue": "^3.0.5",

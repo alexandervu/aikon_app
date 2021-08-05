@@ -62,7 +62,7 @@ export default defineComponent({
     const store = useStore()
     return {
       count,
-      version: computed(() => store.state.version)
+      version: computed(() => `${store.state.version}-${store.state.githash} ${store.state.timestamp}`)
     }
   }
 })

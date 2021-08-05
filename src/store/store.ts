@@ -6,8 +6,9 @@ const store = createStore({
   state () {
     return {
       count: 0,
-      build: '-',
-      version: packdef.version || '-'
+      timestamp: packdef?.build?.timestamp || 'n/a',
+      githash: packdef?.build?.githash || 'n/a',
+      version: packdef?.version || 'n/a'
     }
   },
   mutations: {
@@ -18,6 +19,12 @@ const store = createStore({
   getters: {
     version: state => {
       return state.version
+    },
+    githash: state => {
+      return state.githash
+    },
+    timestamp: state => {
+      return state.timestamp
     }
   }
 })

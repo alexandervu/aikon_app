@@ -26,8 +26,8 @@ jobs:
           path: |
             dist
           key: aikon-stage-cache
-      - run: sed -i '' "s/%BUILDHASH%/$(git rev-parse --short HEAD)/" package.json
-      - run: sed -i '' "s/%BUILDTIMESTAMP%/$(date -u)/" package.json
+      - run: sed -i.bak "s/%BUILDHASH%/$(git rev-parse --short HEAD)/" package.json && rm package.json.bak
+      - run: sed -i.bak "s/%BUILDTIMESTAMP%/$(date -u)/" package.json && rm package.json.bak
       - run: npm ci
       - run: npm run build --if-present
       - run: echo 'dont forget to run npm test'

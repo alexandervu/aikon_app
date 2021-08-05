@@ -32,8 +32,6 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    env:
-      STAGE_NAME: production
     steps:
       - uses: actions/checkout@v2
         with:
@@ -50,7 +48,7 @@ jobs:
 
       - run: mv ./dist/* ./ && rmdir dist
       - run: git config --global user.email "github@aikon.one"
-      - run: git config --global user.name "${{ env.STAGE_NAME }}"
+      - run: git config --global user.name "production"
       - run: git add .
       - run: git commit -m 'new deployment'
       - run: git push

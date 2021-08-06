@@ -1,5 +1,7 @@
 import { createApp } from 'vue'
-import App from './Admin.vue'
+import Ambassador from './Ambassador.vue'
+import { router } from './router'
 
-createApp(App)
+createApp(Ambassador)
+  .use(router)
   .mount('#ambassador')

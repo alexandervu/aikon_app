@@ -33,6 +33,7 @@ module.exports = {
         ignoreUrls: true
       }
     ],
+    'space-infix-ops': 'off',
     '@typescript-eslint/ban-ts-ignore': 0
   },
   parserOptions: {

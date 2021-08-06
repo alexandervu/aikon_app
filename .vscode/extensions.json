@@ -7,7 +7,7 @@
     // ESLint-disable-snippets - Simple snippets for disable eslint rules
     "drknoxy.eslint-disable-snippets",
     // Vue - Syntax highlight for Vue.js
-    "octref.vetur",
+    "znck.vue-language-features",
     // Stylelint - Modern CSS/SCSS/Less linter
     "stylelint.vscode-stylelint",
     // EditorConfig for VS Code - EditorConfig Support for Visual Studio Code
@@ -26,6 +26,8 @@
     "coenraads.bracket-pair-colorizer",
     // Better-comments - Improve comments by color
     "aaron-bond.better-comments",
+    // API testing like Postmen only better
+    "rangav.vscode-thunder-client",
     // Theme-cobalt3 - Color Theme
     "alex-pattison.theme-cobalt3",
     // perkovec.emoji - Emoji support

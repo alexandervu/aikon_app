@@ -1,3 +1,6 @@
+// This definition file is required when we use Option API.
+// The Composition API just need the State Interface we defined
+// directly in the store file.
 import { ComponentCustomProperties } from 'vue'
 import { Store } from 'vuex'
 

@@ -1,4 +1,11 @@
 <template>
+  <router-link to="/">
+    Home
+  </router-link>
+  <router-link to="/profile">
+    Profile
+  </router-link>
+  <a href="/ambassador/">AMBASSADOR</a>
   <router-view />
   <img
     alt="Vue logo"

@@ -1,3 +1,6 @@
+domains:
+- domain: app-state.aikon.one
+  type: PRIMARY
 name: aikon-app-stage
 region: ams
 static_sites:

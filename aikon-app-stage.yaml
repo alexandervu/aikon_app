@@ -10,6 +10,8 @@ static_sites:
     deploy_on_push: true
     repo: alexandervu/aikon_app
   name: aikon-app-stage
+  index_document: index.html
+  error_document: index.html
   routes:
   - path: /
   source_dir: /
